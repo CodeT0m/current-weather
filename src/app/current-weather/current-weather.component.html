@@ -1,0 +1,98 @@
+<!-- <pre>{{ weatherResponse | json }}</pre> -->
+<table class="table">
+    <tbody>
+        <tr *ngFor="let key of keys">
+            <td *ngIf="!(key === 'base' || key === 'cod')">
+                {{ key }}
+            </td>
+            <ng-container *ngIf="key === 'coord'">
+                <td>
+                    <div *ngFor="let item of coord">{{ item }}</div>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="key === 'weather'">
+                <td>
+                    <div>
+                        Description: {{ weather[2] }}
+                        <img src="http://openweathermap.org/img/wn/{{ weather[3] }}@2x.png"/>
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="key === 'main'">
+                <td>
+                    <div>
+                        Temperature: {{ main[0] }}
+                        Feels like: {{ main[1] }}
+                        Min temp: {{ main[2] }}
+                        Max temp: {{ main[3] }}
+                        Pressure: {{ main[4] }}
+                        Humidity: {{ main[5] }}
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="key === 'visibility'">
+                <td>
+                    <div>{{ values[4] }}</div>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="key === 'wind'">
+                <td>
+                    <div>
+                        Speed: {{ wind[0] }}
+                        Deg: {{ wind[1] }}
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="key === 'rain'">
+                <td>
+                    <div>
+                        1h: {{ rain[0] }}
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="key === 'snow'">
+                <td>
+                    <div>
+                        1h: {{ snow[0] }}
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="key === 'clouds'">
+                <td>
+                    <div>
+                        All: {{ clouds[0] }}
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="key === 'dt'">
+                <td>
+                    <div>{{ dt | date: 'short' }}</div>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="key === 'sys'">
+                <td>
+                    <div>
+                        Country: {{ sys[2] }}
+                        Sunrise: {{ sys[3] * 1000 | date: 'short' }}
+                        Sunset: {{ sys[4] * 1000 | date: 'short' }}
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="key === 'timezone'">
+                <td>
+                    <div>GMT + {{ values[9] / 3600 }}h</div>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="key === 'id'">
+                <td>
+                    <div>{{ values[10] }}</div>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="key === 'name'">
+                <td>
+                    <div>{{ values[11] }}</div>
+                </td>
+            </ng-container>
+        </tr>
+    </tbody>
+</table>
